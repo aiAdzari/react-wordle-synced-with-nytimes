@@ -1,3 +1,4 @@
+
 const gameStateKey = 'gameState'
 const highContrastKey = 'highContrast'
 
@@ -47,3 +48,4 @@ export const getStoredIsHighContrastMode = () => {
   const highContrast = localStorage.getItem(highContrastKey)
   return highContrast === '1'
 }
+

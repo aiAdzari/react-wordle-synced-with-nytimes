@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
 import { InfoModal } from './components/modals/InfoModal'
+import { DayModal } from './components/modals/SettingsDay'
 import { StatsModal } from './components/modals/StatsModal'
 import { SettingsModal } from './components/modals/SettingsModal'
+import { format } from 'date-fns';
 import {
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
@@ -12,14 +14,12 @@ import {
   CORRECT_WORD_MESSAGE,
   HARD_MODE_ALERT_MESSAGE,
   DISCOURAGE_INAPP_BROWSER_TEXT,
-  SHARE_FAILURE_TEXT,
 } from './constants/strings'
 import {
   MAX_CHALLENGES,
   REVEAL_TIME_MS,
   WELCOME_INFO_MODAL_MS,
   DISCOURAGE_INAPP_BROWSERS,
-  LONG_ALERT_TIME_MS,
 } from './constants/settings'
 import {
   isWordInWordList,
@@ -33,7 +33,7 @@ import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
   setStoredIsHighContrastMode,
-  getStoredIsHighContrastMode,
+  getStoredIsHighContrastMode, StoredGameState,
 } from './lib/localStorage'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
 
@@ -54,6 +54,8 @@ function App() {
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
+  const [isDayModalOpen, setIsDayModalOpen] = useState(false)
+  const [selectedDay, setSelectedDay] = useState(new Date())
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isMigrateStatsModalOpen, setIsMigrateStatsModalOpen] = useState(false)
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
@@ -96,6 +98,7 @@ function App() {
       : false
   )
 
+
   useEffect(() => {
     // if no game state on load,
     // show the user the how-to info modal
@@ -115,6 +118,7 @@ function App() {
       })
   }, [showErrorAlert])
 
+
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark')
@@ -129,9 +133,14 @@ function App() {
     }
   }, [isDarkMode, isHighContrastMode])
 
+
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }
+
+  const selectedDayFlag = (selectedDay: Date) => {
+    localStorage.setItem('selectedDay', format(selectedDay, 'yyyy-MM-dd'))
   }
 
   const handleHardMode = (isHard: boolean) => {
@@ -254,12 +263,21 @@ function App() {
     }
   }
 
+  const OnRefresh = () => {
+    const guesses: string[] = []
+    saveGameStateToLocalStorage({ guesses, solution })
+    window.location.reload()
+  }
+
+
   return (
     <div className="h-screen flex flex-col">
       <Navbar
         setIsInfoModalOpen={setIsInfoModalOpen}
+        setIsDayModalOpen={setIsDayModalOpen}
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
+        setRefresh={OnRefresh}
       />
       <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="pb-6 grow">
@@ -283,6 +301,12 @@ function App() {
           isOpen={isInfoModalOpen}
           handleClose={() => setIsInfoModalOpen(false)}
         />
+        <DayModal
+            isOpen={isDayModalOpen}
+            handleClose={() => setIsDayModalOpen(false)}
+            selectedDay={selectedDay}
+            selectedDayFlag={selectedDayFlag}
+        />
         <StatsModal
           isOpen={isStatsModalOpen}
           handleClose={() => setIsStatsModalOpen(false)}
@@ -292,11 +316,6 @@ function App() {
           isGameLost={isGameLost}
           isGameWon={isGameWon}
           handleShareToClipboard={() => showSuccessAlert(GAME_COPIED_MESSAGE)}
-          handleShareFailure={() =>
-            showErrorAlert(SHARE_FAILURE_TEXT, {
-              durationMs: LONG_ALERT_TIME_MS,
-            })
-          }
           handleMigrateStatsButton={() => {
             setIsStatsModalOpen(false)
             setIsMigrateStatsModalOpen(true)

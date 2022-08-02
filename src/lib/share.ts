@@ -16,8 +16,7 @@ export const shareStatus = (
   isHardMode: boolean,
   isDarkMode: boolean,
   isHighContrastMode: boolean,
-  handleShareToClipboard: () => void,
-  handleShareFailure: () => void
+  handleShareToClipboard: () => void
 ) => {
   const textToShare =
     `${GAME_TITLE} ${solutionIndex} ${
@@ -42,19 +41,9 @@ export const shareStatus = (
     shareSuccess = false
   }
 
-  try {
-    if (!shareSuccess) {
-      if (navigator.clipboard) {
-        navigator.clipboard
-          .writeText(textToShare)
-          .then(handleShareToClipboard)
-          .catch(handleShareFailure)
-      } else {
-        handleShareFailure()
-      }
-    }
-  } catch (error) {
-    handleShareFailure()
+  if (!shareSuccess) {
+    navigator.clipboard.writeText(textToShare)
+    handleShareToClipboard()
   }
 }
 
