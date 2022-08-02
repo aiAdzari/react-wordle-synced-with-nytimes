@@ -138,7 +138,7 @@ function App() {
   }
 
   const selectedDayFlag = (selectedDay: Date) => {
-    localStorage.setItem('selectedDay', format(selectedDay, 'yyyy-MM-dd'))
+    sessionStorage.setItem('selectedDay', format(selectedDay, 'yyyy-MM-dd'))
   }
 
   const handleHardMode = (isHard: boolean) => {

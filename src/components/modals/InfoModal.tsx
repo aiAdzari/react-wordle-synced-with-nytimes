@@ -59,7 +59,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
 
       <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
         This is a word guessing game develop by open source version, but
-        everyday solution is the same with
+        everyday solution is synced with
         <a
           href="https://www.nytimes.com/games/wordle/index.html"
           className="underline font-bold"
@@ -67,7 +67,11 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
           {' '}
           nytimes version
         </a>{' '}
-        , enjoy!
+        .
+      </p>
+      <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
+        There's more, this version has added difficulty adjustment, historical
+        backtracking, and answer hints, enjoy!
       </p>
     </BaseModal>
   )

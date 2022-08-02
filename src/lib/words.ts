@@ -8,7 +8,7 @@ import { parseISO } from 'date-fns'
 // 1 January 2022 Game Epoch
 export const firstGameDate = new Date(2021, 5, 19)
 export const periodInDays = 1
-const selectedDay = localStorage.getItem('selectedDay')
+const selectedDay = sessionStorage.getItem('selectedDay')
 let gameDay = new Date()
 if (selectedDay != null) {
   gameDay = parseISO(selectedDay)
