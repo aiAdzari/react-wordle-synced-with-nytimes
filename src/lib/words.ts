@@ -137,4 +137,4 @@ export const getSolution = (today: Date) => {
   }
 }
 
-export const {solution, solutionIndex, tomorrow} = getSolution(getGameDay())
+export const { solution, solutionIndex, tomorrow } = getSolution(getGameDay())
