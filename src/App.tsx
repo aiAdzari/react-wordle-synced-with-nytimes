@@ -5,7 +5,7 @@ import { InfoModal } from './components/modals/InfoModal'
 import { DayModal } from './components/modals/SettingsDay'
 import { StatsModal } from './components/modals/StatsModal'
 import { SettingsModal } from './components/modals/SettingsModal'
-import { format } from 'date-fns';
+import { format } from 'date-fns'
 import {
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
@@ -33,7 +33,8 @@ import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
   setStoredIsHighContrastMode,
-  getStoredIsHighContrastMode, StoredGameState,
+  getStoredIsHighContrastMode,
+  StoredGameState,
 } from './lib/localStorage'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
 
@@ -98,7 +99,6 @@ function App() {
       : false
   )
 
-
   useEffect(() => {
     // if no game state on load,
     // show the user the how-to info modal
@@ -118,7 +118,6 @@ function App() {
       })
   }, [showErrorAlert])
 
-
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark')
@@ -132,7 +131,6 @@ function App() {
       document.documentElement.classList.remove('high-contrast')
     }
   }, [isDarkMode, isHighContrastMode])
-
 
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
@@ -269,7 +267,6 @@ function App() {
     window.location.reload()
   }
 
-
   return (
     <div className="h-screen flex flex-col">
       <Navbar
@@ -302,10 +299,10 @@ function App() {
           handleClose={() => setIsInfoModalOpen(false)}
         />
         <DayModal
-            isOpen={isDayModalOpen}
-            handleClose={() => setIsDayModalOpen(false)}
-            selectedDay={selectedDay}
-            selectedDayFlag={selectedDayFlag}
+          isOpen={isDayModalOpen}
+          handleClose={() => setIsDayModalOpen(false)}
+          selectedDay={selectedDay}
+          selectedDayFlag={selectedDayFlag}
         />
         <StatsModal
           isOpen={isStatsModalOpen}
