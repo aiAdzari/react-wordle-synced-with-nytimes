@@ -3,17 +3,16 @@ import { VALID_GUESSES } from '../constants/validGuesses'
 import { WRONG_SPOT_MESSAGE, NOT_CONTAINED_MESSAGE } from '../constants/strings'
 import { getGuessStatuses } from './statuses'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
-import { parseISO } from 'date-fns';
+import { parseISO } from 'date-fns'
 
 // 1 January 2022 Game Epoch
 export const firstGameDate = new Date(2021, 5, 19)
 export const periodInDays = 1
 const selectedDay = localStorage.getItem('selectedDay')
 let gameDay = new Date()
-if (selectedDay != null){
-   gameDay = parseISO(selectedDay)
+if (selectedDay != null) {
+  gameDay = parseISO(selectedDay)
 }
-
 
 export const isWordInWordList = (word: string) => {
   return (
@@ -125,7 +124,6 @@ export const getWordOfDay = (index: number) => {
   }
 
   return localeAwareUpperCase(WORDS[index % WORDS.length])
-
 }
 
 export const getSolution = (today: Date) => {
@@ -139,4 +137,4 @@ export const getSolution = (today: Date) => {
   }
 }
 
-export const { solution, solutionIndex, tomorrow } = getSolution(getGameDay())
+export const {solution, solutionIndex, tomorrow} = getSolution(getGameDay())

@@ -1,4 +1,3 @@
-
 const gameStateKey = 'gameState'
 const highContrastKey = 'highContrast'
 
