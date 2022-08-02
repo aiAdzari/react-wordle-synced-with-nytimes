@@ -58,15 +58,16 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
 
       <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
-        This is a word guessing game develop by open source version,
-          but everyday solution is the same with
+        This is a word guessing game develop by open source version, but
+        everyday solution is the same with
         <a
           href="https://www.nytimes.com/games/wordle/index.html"
           className="underline font-bold"
-        >{' '}
-            nytimes version
+        >
+          {' '}
+          nytimes version
         </a>{' '}
-          , enjoy!
+        , enjoy!
       </p>
     </BaseModal>
   )
