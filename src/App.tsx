@@ -3,6 +3,7 @@ import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
 import { InfoModal } from './components/modals/InfoModal'
 import { DayModal } from './components/modals/SettingsDay'
+import { AnswerModal } from './components/modals/AnswerModal'
 import { StatsModal } from './components/modals/StatsModal'
 import { SettingsModal } from './components/modals/SettingsModal'
 import { format } from 'date-fns'
@@ -56,6 +57,7 @@ function App() {
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isDayModalOpen, setIsDayModalOpen] = useState(false)
+  const [isAnswerOpen, setIsAnswerModalOpen] = useState(false)
   const [selectedDay, setSelectedDay] = useState(new Date())
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isMigrateStatsModalOpen, setIsMigrateStatsModalOpen] = useState(false)
@@ -272,6 +274,7 @@ function App() {
       <Navbar
         setIsInfoModalOpen={setIsInfoModalOpen}
         setIsDayModalOpen={setIsDayModalOpen}
+        setIsAnswerOpen={setIsAnswerModalOpen}
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
         setRefresh={OnRefresh}
@@ -303,6 +306,10 @@ function App() {
           handleClose={() => setIsDayModalOpen(false)}
           selectedDay={selectedDay}
           selectedDayFlag={selectedDayFlag}
+        />
+        <AnswerModal
+          isOpen={isAnswerOpen}
+          handleClose={() => setIsAnswerModalOpen(false)}
         />
         <StatsModal
           isOpen={isStatsModalOpen}

@@ -3,6 +3,7 @@ import {
   CogIcon,
   InformationCircleIcon,
   RefreshIcon,
+  AnnotationIcon,
 } from '@heroicons/react/outline'
 import { GAME_TITLE } from '../../constants/strings'
 import { CalendarIcon } from '@heroicons/react/solid'
@@ -13,6 +14,7 @@ type Props = {
   setIsStatsModalOpen: (value: boolean) => void
   setIsSettingsModalOpen: (value: boolean) => void
   setRefresh: (value: boolean) => void
+  setIsAnswerOpen: (value: boolean) => void
 }
 
 export const Navbar = ({
@@ -21,6 +23,7 @@ export const Navbar = ({
   setIsStatsModalOpen,
   setIsSettingsModalOpen,
   setRefresh,
+  setIsAnswerOpen,
 }: Props) => {
   return (
     <div className="navbar">
@@ -33,6 +36,10 @@ export const Navbar = ({
           <CalendarIcon
             className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
             onClick={() => setIsDayModalOpen(true)}
+          />
+          <AnnotationIcon
+            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+            onClick={() => setIsAnswerOpen(true)}
           />
         </div>
         <p className="text-xl ml-2.5 font-bold dark:text-white">{GAME_TITLE}</p>
