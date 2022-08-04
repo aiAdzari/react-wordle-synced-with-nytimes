@@ -23,8 +23,8 @@ export const AnswerModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="Answer Hints" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300 mb-1">
-        Move your mouse over the black block to get hints. You can choose
-        whatever prompt you want at the moment.
+        Move your mouse over or click the black block to get hints. You can
+        choose whatever prompt you want at the moment.
       </p>
       <hr />
       <p className="text-m text-gray-500 dark:text-gray-300 mt-4">
