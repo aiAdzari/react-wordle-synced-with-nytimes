@@ -41,7 +41,7 @@ export const AnswerModal = ({ isOpen, handleClose }: Props) => {
         <div className="bg-black"></div>
         <Cell
           value={haveSameWord(solution)}
-          status={haveSameWord(solution) == 'Y' ? 'correct' : 'absent'}
+          status={haveSameWord(solution) === 'Y' ? 'correct' : 'absent'}
           isHidden={!IsAnswerShowUp}
         />
       </div>
