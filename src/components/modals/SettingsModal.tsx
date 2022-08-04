@@ -35,11 +35,14 @@ export const SettingsModal = ({
           handleFlag={handleHardMode}
           description={HARD_MODE_DESCRIPTION}
         />
+        {/* 移除黑夜模式
         <SettingsToggle
           settingName="Dark Mode"
           flag={isDarkMode}
           handleFlag={handleDarkMode}
         />
+        */}
+
         <SettingsToggle
           settingName="High Contrast Mode"
           flag={isHighContrastMode}
