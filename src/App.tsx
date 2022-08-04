@@ -113,7 +113,7 @@ function App() {
       isInAppBrowser() &&
       showErrorAlert(DISCOURAGE_INAPP_BROWSER_TEXT, {
         persist: false,
-        durationMs: 7000,
+        durationMs: 3000,
       })
   }, [showErrorAlert])
 
@@ -267,7 +267,7 @@ function App() {
   }
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col h-screen-ios">
       <Navbar
         setIsInfoModalOpen={setIsInfoModalOpen}
         setIsDayModalOpen={setIsDayModalOpen}
